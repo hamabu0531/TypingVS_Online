@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LobbyUI : MonoBehaviour
 {
-    public Canvas canvas;
+    public Canvas canvas, hiddenCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +28,14 @@ public class LobbyUI : MonoBehaviour
         else
         {
             canvas.gameObject.SetActive(true);
+        }
+        if (hiddenCanvas.gameObject.activeSelf)
+        {
+            hiddenCanvas.gameObject.SetActive(false);
+        }
+        else
+        {
+            hiddenCanvas.gameObject.SetActive(true);
         }
 
     }

@@ -7,18 +7,12 @@ using Photon.Realtime;
 public class LobbyNetwork : MonoBehaviourPunCallbacks
 {
     public GameObject UIManager;
-    string currentState = PhotonNetwork.NetworkClientState.ToString();
     LobbyUI lobbyUI;
     // Start is called before the first frame update
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
         lobbyUI = UIManager.GetComponent<LobbyUI>();
-    }
-
-    private void OnGUI()
-    {
-        GUILayout.Label(PhotonNetwork.NetworkClientState.ToString());
     }
 
     public override void OnConnectedToMaster()
@@ -39,10 +33,5 @@ public class LobbyNetwork : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (PhotonNetwork.NetworkClientState.ToString() != currentState)
-        {
-            currentState = PhotonNetwork.NetworkClientState.ToString();
-            Debug.Log(PhotonNetwork.NetworkClientState.ToString());
-        }
     }
 }
