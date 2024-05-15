@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LobbyUI : MonoBehaviour
 {
@@ -20,6 +21,28 @@ public class LobbyUI : MonoBehaviour
 
     public void ChangeActive()
     {
-        canvas.gameObject.SetActive(true);
+        if (canvas.gameObject.activeSelf)
+        {
+            canvas.gameObject.SetActive(false);
+        }
+        else
+        {
+            canvas.gameObject.SetActive(true);
+        }
+
+    }
+
+    public void Disconnection()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
+    public void OneOnOne()
+    {
+        SceneManager.LoadScene("OneOnOne");
+    }
+    public void TwoOnTwo()
+    {
+        SceneManager.LoadScene("TwoOnTwo");
     }
 }

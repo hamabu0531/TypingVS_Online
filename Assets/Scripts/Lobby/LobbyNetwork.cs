@@ -4,13 +4,16 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class JoinLobby : MonoBehaviourPunCallbacks
+public class LobbyNetwork : MonoBehaviourPunCallbacks
 {
+    public GameObject UIManager;
     string currentState = PhotonNetwork.NetworkClientState.ToString();
+    LobbyUI lobbyUI;
     // Start is called before the first frame update
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        lobbyUI = UIManager.GetComponent<LobbyUI>();
     }
 
     private void OnGUI()
@@ -26,6 +29,7 @@ public class JoinLobby : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
+        lobbyUI.ChangeActive();
     }
 
     public void Disconnection()
