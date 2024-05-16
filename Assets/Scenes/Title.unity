@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e2a783d50c56a4ca789dad9616c582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputText: {fileID: 2116152707}
 --- !u!4 &825478269
 Transform:
   m_ObjectHideFlags: 0
@@ -961,7 +962,7 @@ GameObject:
   - component: {fileID: 2116152708}
   - component: {fileID: 2116152707}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: InputText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

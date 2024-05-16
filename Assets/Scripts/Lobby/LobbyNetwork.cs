@@ -11,6 +11,8 @@ public class LobbyNetwork : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        PhotonNetwork.NickName = PlayerPrefs.GetString("name");
+        //Debug.Log(PlayerPrefs.GetString("name"));
         PhotonNetwork.ConnectUsingSettings();
         lobbyUI = UIManager.GetComponent<LobbyUI>();
     }
@@ -24,14 +26,39 @@ public class LobbyNetwork : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         lobbyUI.ChangeActive();
+        ListPlayerName();
     }
 
     public void Disconnection()
     {
         PhotonNetwork.Disconnect();
     }
-
-    private void Update()
+    public void ListPlayerName()
     {
+        if (PhotonNetwork.InRoom)
+        {
+            Player[] p = PhotonNetwork.PlayerList;
+            string pList = "";
+            for (int i = 0; i < p.Length; i++)
+            {
+                pList += p[i].NickName;
+                if (i != p.Length - 1)
+                {
+                    pList += "\n";
+                }
+            }
+            Debug.Log(pList);
+            lobbyUI.playerList.text = pList;
+        }
+    }
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        ListPlayerName();
+    }
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        ListPlayerName();
     }
 }
