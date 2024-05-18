@@ -6,14 +6,10 @@ using Photon.Realtime;
 
 public class OneOnOneNetwork : MonoBehaviourPunCallbacks
 {
-    public GameObject UIManager;
-    private bool flag = false;
-    OneOnOneUI oneUI;
     // Start is called before the first frame update
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
-        oneUI = UIManager.GetComponent<OneOnOneUI>();
     }
     public override void OnConnectedToMaster()
     {
@@ -24,30 +20,11 @@ public class OneOnOneNetwork : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        flag = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         
-    }
-    public void Disconnection()
-    {
-        PhotonNetwork.Disconnect();
-    }
-    void CheckPlayerCount()
-    {
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
-        {
-            Debug.Log("2 players have joined the room. Starting the game...");
-            StartGame();
-        }
-    }
-    void StartGame()
-    {
-        oneUI.ChangeActive();
-    }
-    private void Update()
-    {
-        if (flag)
-        {
-            CheckPlayerCount();
-        }
     }
 }

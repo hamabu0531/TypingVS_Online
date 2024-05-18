@@ -47,7 +47,7 @@ public class LobbyUI : MonoBehaviour
 
     public void OneOnOne()
     {
-        SceneManager.LoadScene("OneOnOne");
+        SceneManager.LoadScene("OneMatching");
     }
     public void TwoOnTwo()
     {
