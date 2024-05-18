@@ -6,18 +6,13 @@ using Photon.Pun;
 public class OneOnOneVariables : MonoBehaviourPunCallbacks, IPunObservable
 {
     public int[] playerHP = { 100, 100 }; // MasterのHP, ClientのHP
-    public float gameTimer = 10.0f;
+    public float countDownTimer = 5.0f;
 
     void Update()
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            gameTimer -= Time.deltaTime;
-            if (gameTimer <= 0)
-            {
-                gameTimer = 0;
-                Debug.Log("Times up!");
-            }
+            countDownTimer -= Time.deltaTime;
         }
     }
 
@@ -29,14 +24,14 @@ public class OneOnOneVariables : MonoBehaviourPunCallbacks, IPunObservable
             // データの送信側（マスタークライアント）
             stream.SendNext(playerHP[0]); // MasterのHP
             stream.SendNext(playerHP[1]); // ClientのHP
-            stream.SendNext(gameTimer);
+            stream.SendNext(countDownTimer);
         }
         else
         {
             // データの受信側
             playerHP[0] = (int)stream.ReceiveNext(); // MasterのHP
             playerHP[1] = (int)stream.ReceiveNext(); // ClientのHP
-            gameTimer = (float)stream.ReceiveNext();
+            countDownTimer = (float)stream.ReceiveNext();
         }
     }
 
@@ -73,5 +68,15 @@ public class OneOnOneVariables : MonoBehaviourPunCallbacks, IPunObservable
     {
         playerHP[0] = masterHP;
         playerHP[1] = clientHP;
+    }
+    public int playerNum()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            return 2;
+        }else
+        {
+            return 1;
+        }
     }
 }

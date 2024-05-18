@@ -11,6 +11,8 @@ public class OneOnOneNetwork : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.ConnectUsingSettings();
     }
+
+    // Update is called once per frame
     public override void OnConnectedToMaster()
     {
         RoomOptions roomOptions = new RoomOptions();
@@ -25,6 +27,6 @@ public class OneOnOneNetwork : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
