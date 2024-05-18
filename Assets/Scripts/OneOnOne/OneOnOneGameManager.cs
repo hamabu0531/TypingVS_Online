@@ -22,7 +22,7 @@ public class OneOnOneGameManager : MonoBehaviour
     {
         if (Input.GetKey(sampleText[i].ToString()))
         {
-            Debug.Log(sampleText[i]);
+           // Debug.Log(sampleText[i]);
             if (i < sampleText.Length-1)
             {
                 enteredText = enteredText + sampleText[i];
@@ -33,7 +33,6 @@ public class OneOnOneGameManager : MonoBehaviour
                 //Š®—¹ˆ—
                 enteredText = "";
                 oneVariables.Attack();
-                Debug.Log("good!");
                 //‰Šú‰»
                 i = 0;
                 sampleText = "randomstring";
