@@ -23,6 +23,10 @@ public class OneOnOneNetwork : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
     }
+    public void Disconnection()
+    {
+        PhotonNetwork.Disconnect();
+    }
 
     // Update is called once per frame
     void Update()
