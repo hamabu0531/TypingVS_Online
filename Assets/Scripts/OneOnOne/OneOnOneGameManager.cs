@@ -9,6 +9,7 @@ public class OneOnOneGameManager : MonoBehaviour
     public Text questionText, inputText;
     string sampleText = "sample", enteredText = "";
     public GameObject Variables;
+    private string[] gameData = {"random1", "random2", "random3", "random4", "random5", "random6", "random7", "random8", "random9", "random10", "random11", "random12"};
     OneOnOneVariables oneVariables;
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,7 @@ public class OneOnOneGameManager : MonoBehaviour
                 oneVariables.Attack();
                 //èâä˙âª
                 i = 0;
-                sampleText = "randomstring";
+                sampleText = gameData[Random.Range(0, 12)];
                 questionText.text = sampleText;
             }
         }

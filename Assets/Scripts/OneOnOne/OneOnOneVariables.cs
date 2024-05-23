@@ -40,6 +40,14 @@ public class OneOnOneVariables : MonoBehaviourPunCallbacks, IPunObservable
         if (PhotonNetwork.IsMasterClient)
         {
             playerHP[1] -= 10; // Client‚ÌHP‚ðŒ¸‚ç‚·
+            if (playerHP[1] <0)
+            {
+
+            }
+            if (playerHP[0] < 100)
+            {
+                playerHP[0] += 2;
+            }
             photonView.RPC("UpdateHP", RpcTarget.All, playerHP[0], playerHP[1]);
         }
         else
@@ -59,6 +67,10 @@ public class OneOnOneVariables : MonoBehaviourPunCallbacks, IPunObservable
         if (PhotonNetwork.IsMasterClient)
         {
             playerHP[0] -= 10; // Master‚ÌHP‚ðŒ¸‚ç‚·
+            if (playerHP[1] < 100)
+            {
+                playerHP[1] += 2;
+            }
             photonView.RPC("UpdateHP", RpcTarget.All, playerHP[0], playerHP[1]);
         }
     }

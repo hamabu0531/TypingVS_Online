@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class OneOnOneUI : MonoBehaviour
     public Canvas canvas, hiddenCanvas;
     public GameObject Variables;
     public Slider mySlider, enemySlider;
+    public Text winnerText;
     private float timer;
     private Text countText, playerNumText;
     private bool flag = true;
@@ -40,6 +42,18 @@ public class OneOnOneUI : MonoBehaviour
                 flag = false;
             }
         }
+        if (oneVariables.playerHP[0] <= 0)
+        {
+            oneVariables.playerHP[0] = 0;
+            GameOver(PhotonNetwork.PlayerList[1].NickName);
+            //クライアントの勝利！
+        }
+        else if (oneVariables.playerHP[1] <= 0)
+        {
+            oneVariables.playerHP[1] = 0;
+            GameOver(PhotonNetwork.PlayerList[0].NickName);
+            //マスターの勝利！
+        }
     }
     public void Disconnection()
     {
@@ -50,5 +64,10 @@ public class OneOnOneUI : MonoBehaviour
     {
         canvas.gameObject.SetActive(true);
         hiddenCanvas.gameObject.SetActive(false);
+    }
+
+    public void GameOver(string winner)
+    {
+        winnerText.text = "勝者: " + winner;
     }
 }
