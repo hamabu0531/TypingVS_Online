@@ -32,7 +32,6 @@ public class OneMatchingNetwork : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             Debug.Log("2 players have joined the room. Starting the game...");
-            Disconnection();
             StartGame();
         }
     }
@@ -42,6 +41,7 @@ public class OneMatchingNetwork : MonoBehaviourPunCallbacks
     }
     void StartGame()
     {
+        //Disconnection();
         SceneManager.LoadScene("OneOnOne");
     }
     private void Update()
