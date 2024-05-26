@@ -7,26 +7,28 @@ public class OneOnOneGameManager : MonoBehaviour
 {
     int i = 0;
     public Text questionText, inputText;
-    string sampleText = "sample", enteredText = "";
+    string selectedText, enteredText = "";
     public GameObject Variables;
-    private string[] gameData = {"random1", "random2", "random3", "random4", "random5", "random6", "random7", "random8", "random9", "random10", "random11", "random12"};
+    public TextAsset gameText;
+    private string[] gameData;
     OneOnOneVariables oneVariables;
     // Start is called before the first frame update
     void Start()
     {
-        questionText.text = sampleText;
+        gameData = gameText.text.Split(",");
+        selectedText = gameData[Random.Range(0, gameData.Length)];
+        questionText.text = selectedText;
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(sampleText[i].ToString()))
+        if (Input.GetKeyDown(selectedText[i].ToString()))
         {
-           // Debug.Log(sampleText[i]);
-            if (i < sampleText.Length-1)
+            if (i < selectedText.Length-1)
             {
-                enteredText = enteredText + sampleText[i];
+                enteredText = enteredText + selectedText[i];
                 i++;
             }
             else
@@ -36,8 +38,8 @@ public class OneOnOneGameManager : MonoBehaviour
                 oneVariables.Attack();
                 //‰Šú‰»
                 i = 0;
-                sampleText = gameData[Random.Range(0, 12)];
-                questionText.text = sampleText;
+                selectedText = gameData[Random.Range(0, gameData.Length)];
+                questionText.text = selectedText;
             }
         }
         inputText.text = enteredText;

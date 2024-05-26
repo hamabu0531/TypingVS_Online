@@ -30,7 +30,7 @@ public class OneOnOneUI : MonoBehaviour
         p1Slider.value = oneVariables.playerHP[0];
         p2Slider.value = oneVariables.playerHP[1];
         //バーの色の変更
-        if (oneVariables.playerHP[0] < 20)
+        if (oneVariables.playerHP[0] <= 20)
         {
             p1Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
         }
@@ -38,7 +38,7 @@ public class OneOnOneUI : MonoBehaviour
         {
             p1Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
         }
-        if (oneVariables.playerHP[1] < 20)
+        if (oneVariables.playerHP[1] <= 20)
         {
             p2Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
         }
