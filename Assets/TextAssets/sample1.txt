@@ -1,1 +1,1 @@
-alpha,beta,chary,delta,echo,foxtrot,golf,hotel,india,juliet,kilo,lima,mike,november,oscar,papa,quebeq,romeo,siella,tango,uniform,victor,wiskey,xlay,yankee,zulu
+apple,banana,cancel,document,engel,fight,great,hello,imagine,juice,knife,listen,monkey,noodle,octopus,python,queue,restaurant,stack,terminal,unity,velocity,white,xanadu,yellow,zipper
