@@ -11,7 +11,8 @@ public class OneOnOneUI : MonoBehaviour
     public GameObject Variables;
     public Slider p1Slider, p2Slider;
     private float timer;
-    private Text countText, playerNumText;
+    public Text countText, playerNumText;
+    public Text player1, player2;
     private bool flag = true;
     OneOnOneVariables oneVariables;
     // Start is called before the first frame update
@@ -19,8 +20,8 @@ public class OneOnOneUI : MonoBehaviour
     {
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
         countText = hiddenCanvas.transform.GetChild(0).GetComponent<Text>();
-        playerNumText = hiddenCanvas.transform.GetChild(1).GetComponent<Text>();
-        playerNumText.text = "You are player" + oneVariables.playerNum() + "!";
+        player1.text = PhotonNetwork.PlayerList[0].NickName;
+        player2.text = PhotonNetwork.PlayerList[1].NickName;
     }
 
     // Update is called once per frame

@@ -8,9 +8,12 @@ using UnityEngine.SceneManagement;
 public class OneOnOneNetwork : MonoBehaviourPunCallbacks
 {
     int i = 0;
+    public GameObject UIManager;
+    OneOnOneUI oneUI;
     // Start is called before the first frame update
     void Start()
     {
+        oneUI = UIManager.GetComponent<OneOnOneUI>();
         PhotonNetwork.ConnectUsingSettings();
     }
 
@@ -34,6 +37,14 @@ public class OneOnOneNetwork : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
+        Player[] p = PhotonNetwork.PlayerList;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            
+        }else
+        {
+            
+        }
         base.OnJoinedRoom();
     }
     public void Disconnection()
