@@ -11,17 +11,19 @@ public class OneOnOneUI : MonoBehaviour
     public GameObject Variables;
     public Slider p1Slider, p2Slider;
     private float timer;
-    public Text countText, playerNumText;
-    public Text player1, player2;
+    public Text countText, musicText, player1, player2;
+    public AudioClip[] audioClips;
     private bool flag = true;
     OneOnOneVariables oneVariables;
     // Start is called before the first frame update
     void Start()
     {
+        audioClips = Resources.LoadAll<AudioClip>("Musics/battle/");
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
         countText = hiddenCanvas.transform.GetChild(0).GetComponent<Text>();
         player1.text = PhotonNetwork.PlayerList[0].NickName;
         player2.text = PhotonNetwork.PlayerList[1].NickName;
+        SelectMusic();
     }
 
     // Update is called once per frame
@@ -89,5 +91,12 @@ public class OneOnOneUI : MonoBehaviour
     {
         hiddenCanvas2.gameObject.SetActive(true);
         hiddenCanvas2.transform.GetChild(0).gameObject.GetComponent<Text>().text = winner + "ÇÃèüóòÅI";
+    }
+    void SelectMusic()
+    {
+        int ran = Random.Range(0, audioClips.Length);
+        GetComponent<AudioSource>().clip = audioClips[ran];
+        musicText.text = "ÅÙ " + audioClips[ran].name;
+        GetComponent<AudioSource>().Play();
     }
 }

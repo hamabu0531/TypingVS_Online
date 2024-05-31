@@ -11,7 +11,6 @@ public class OneOnOneGameManager : MonoBehaviour
     public GameObject Variables;
     public TextAsset gameText;
     private string[] gameData;
-    public AudioClip[] audioClips;
     OneOnOneVariables oneVariables;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +19,6 @@ public class OneOnOneGameManager : MonoBehaviour
         selectedText = gameData[Random.Range(0, gameData.Length)];
         questionText.text = selectedText;
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
-        SelectMusic();
     }
 
     // Update is called once per frame
@@ -47,10 +45,5 @@ public class OneOnOneGameManager : MonoBehaviour
         inputText.text = enteredText;
     }
 
-    void SelectMusic()
-    {
-        int ran = Random.Range(0, audioClips.Length);
-        GetComponent<AudioSource>().clip = audioClips[ran];
-        GetComponent<AudioSource>().Play();
-    }
+    
 }

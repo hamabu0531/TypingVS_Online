@@ -47,7 +47,6 @@ public class LobbyNetwork : MonoBehaviourPunCallbacks
                     pList += "\n";
                 }
             }
-            Debug.Log(pList);
             lobbyUI.playerList.text = pList;
         }
     }
