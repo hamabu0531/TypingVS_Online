@@ -13,7 +13,7 @@ public class OneOnOneUI : MonoBehaviour
     private float timer;
     public Text countText, musicText, player1, player2;
     public AudioClip[] audioClips;
-    private bool flag = true;
+    private bool flag = true, flag2 = true;
     OneOnOneVariables oneVariables;
     // Start is called before the first frame update
     void Start()
@@ -61,18 +61,20 @@ public class OneOnOneUI : MonoBehaviour
                 flag = false;
             }
         }
-        if (oneVariables.playerHP[0] <= 0)
+        if (oneVariables.playerHP[0] <= 0 && flag2)
         {
             oneVariables.playerHP[0] = 0;
             GameOver(PhotonNetwork.PlayerList[1].NickName);
             canvas.gameObject.SetActive(false);
+            flag2 = false;
             //クライアントの勝利！
         }
-        else if (oneVariables.playerHP[1] <= 0)
+        else if (oneVariables.playerHP[1] <= 0 && flag2)
         {
             oneVariables.playerHP[1] = 0;
             GameOver(PhotonNetwork.PlayerList[0].NickName);
             canvas.gameObject.SetActive(false);
+            flag2 = false;
             //マスターの勝利！
         }
     }
