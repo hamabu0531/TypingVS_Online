@@ -98,7 +98,20 @@ public class OneOnOneUI : MonoBehaviour
     {
         int ran = Random.Range(0, audioClips.Length);
         GetComponent<AudioSource>().clip = audioClips[ran];
-        musicText.text = "ÅÙ " + audioClips[ran].name;
+        FadeOut(audioClips[ran].name);
         GetComponent<AudioSource>().Play();
+    }
+
+    IEnumerator FadeOut(string songName)
+    {
+        musicText.text = "ÅÙ " + songName;
+        while (true)
+        {
+            for (int i = 0; i < 255; i++)
+            {
+                musicText.color -= new Color32(0, 0, 0, 1);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
     }
 }
