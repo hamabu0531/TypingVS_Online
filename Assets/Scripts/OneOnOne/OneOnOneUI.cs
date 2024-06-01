@@ -98,7 +98,7 @@ public class OneOnOneUI : MonoBehaviour
     {
         int ran = Random.Range(0, audioClips.Length);
         GetComponent<AudioSource>().clip = audioClips[ran];
-        musicText.text = audioClips[ran].name;
+        musicText.text = "ÅÙ " + audioClips[ran].name;
         StartCoroutine(FadeOut());
         GetComponent<AudioSource>().Play();
     }
