@@ -10,6 +10,7 @@ public class OneOnOneGameManager : MonoBehaviour
     string selectedText, enteredText = "";
     public GameObject Variables;
     public TextAsset gameText;
+    public AudioClip misTypeSE;
     private string[] gameData;
     OneOnOneVariables oneVariables;
     // Start is called before the first frame update
@@ -35,12 +36,17 @@ public class OneOnOneGameManager : MonoBehaviour
             {
                 //äÆóπèàóù
                 enteredText = "";
-                oneVariables.Attack();
+                oneVariables.Attack(10, 2);
                 //èâä˙âª
                 i = 0;
                 selectedText = gameData[Random.Range(0, gameData.Length)];
                 questionText.text = selectedText;
             }
+        }
+        else if (Input.anyKeyDown)
+        {
+            oneVariables.Attack(-1, 0);
+            GetComponent<AudioSource>().PlayOneShot(misTypeSE);
         }
         inputText.text = enteredText;
     }

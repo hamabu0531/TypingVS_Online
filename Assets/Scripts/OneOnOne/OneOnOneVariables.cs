@@ -35,41 +35,43 @@ public class OneOnOneVariables : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    public void Attack()
+    public void Attack(int damage, int heal)
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            playerHP[1] -= 10; // Client‚ÌHP‚ðŒ¸‚ç‚·
-            if (playerHP[1] <0)
+            if(damage>0 || playerHP[1] < 100)
             {
-
+                playerHP[1] -= damage; // Client‚ÌHP‚ðŒ¸‚ç‚·
             }
             if (playerHP[0] < 100)
             {
-                playerHP[0] += 2;
+                playerHP[0] += heal;
             }
             photonView.RPC("UpdateHP", RpcTarget.All, playerHP[0], playerHP[1]);
         }
         else
         {
-            SendDamage();
+            SendDamage(damage, heal);
         }
     }
 
-    public void SendDamage()
+    public void SendDamage(int damage, int heal)
     {
-        photonView.RPC("ReceiveDamage", RpcTarget.MasterClient);
+        photonView.RPC("ReceiveDamage", RpcTarget.MasterClient, damage, heal);
     }
 
     [PunRPC]
-    void ReceiveDamage()
+    void ReceiveDamage(int damage, int heal)
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            playerHP[0] -= 10; // Master‚ÌHP‚ðŒ¸‚ç‚·
+            if (damage > 0 || playerHP[0] < 100)
+            {
+                playerHP[0] -= damage; // Master‚ÌHP‚ðŒ¸‚ç‚·
+            }
             if (playerHP[1] < 100)
             {
-                playerHP[1] += 2;
+                playerHP[1] += heal;
             }
             photonView.RPC("UpdateHP", RpcTarget.All, playerHP[0], playerHP[1]);
         }
