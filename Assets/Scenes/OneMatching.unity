@@ -634,6 +634,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471215392}
   m_CullTransparentMesh: 1
+--- !u!1 &1598990934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1598990936}
+  - component: {fileID: 1598990935}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1598990935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598990934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879170c7e482fa4290e7ddf4e2aa0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonSE2: {fileID: 8300000, guid: 79fe8854c8861644e87cb7235e40f43b, type: 3}
+--- !u!4 &1598990936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598990934}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1603757751
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,9 +912,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1603757753}
-        m_TargetAssemblyTypeName: OneOnOneNetwork, Assembly-CSharp
-        m_MethodName: Disconnection
+      - m_Target: {fileID: 1598990935}
+        m_TargetAssemblyTypeName: OneMatchingUI, Assembly-CSharp
+        m_MethodName: BackToLobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -881,7 +926,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1603757753}
         m_TargetAssemblyTypeName: OneOnOneNetwork, Assembly-CSharp
-        m_MethodName: BackToLobby
+        m_MethodName: Disconnection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

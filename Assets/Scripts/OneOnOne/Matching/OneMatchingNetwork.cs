@@ -35,10 +35,7 @@ public class OneMatchingNetwork : MonoBehaviourPunCallbacks
             StartGame();
         }
     }
-    public void BackToLobby()
-    {
-        SceneManager.LoadScene("Lobby");
-    }
+    
     void StartGame()
     {
         //Disconnection();
