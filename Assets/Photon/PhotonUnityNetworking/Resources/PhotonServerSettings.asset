@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: 1.9
+    AppVersion: 2.0
     UseNameServer: 1
     FixedRegion: jp
     Server: 

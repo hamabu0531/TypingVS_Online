@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class OneOnOneNetwork : MonoBehaviourPunCallbacks
 {
-    int i = 0;
+    int roomNum = 0;
     public GameObject UIManager;
     OneOnOneUI oneUI;
     // Start is called before the first frame update
@@ -20,31 +20,32 @@ public class OneOnOneNetwork : MonoBehaviourPunCallbacks
     // Update is called once per frame
     public override void OnConnectedToMaster()
     {
+        JoinOrCreateRoom();
+    }
+    public void JoinOrCreateRoom()
+    {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;
-        PhotonNetwork.JoinOrCreateRoom("OneOnOne", roomOptions, TypedLobby.Default);
+        Debug.Log("Attempting to join or create room: " + "\"OneOnOne" + roomNum + "\"");
+        PhotonNetwork.JoinOrCreateRoom("OneOnOne" + roomNum, roomOptions, TypedLobby.Default);
     }
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         if (returnCode == ErrorCode.GameFull) //êlêîÇ¢Ç¡ÇœÇ¢
         {
-            i++;
-            RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = 2;
-            PhotonNetwork.JoinOrCreateRoom("OneOnOne" + i.ToString(), roomOptions, TypedLobby.Default);
+            roomNum++;
+            JoinOrCreateRoom();
         }
-        base.OnJoinRoomFailed(returnCode, message);
+        else
+        {
+            Debug.LogError("Failed to join room: " + message);
+            base.OnJoinRoomFailed(returnCode, message);
+        }
     }
     public override void OnJoinedRoom()
     {
+        Debug.Log("Joined to \"OneOnOne" + roomNum + "\"");
         Player[] p = PhotonNetwork.PlayerList;
-        if (PhotonNetwork.IsMasterClient)
-        {
-            
-        }else
-        {
-            
-        }
         base.OnJoinedRoom();
     }
     public void Disconnection()

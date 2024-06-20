@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class OneOnOneUI : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class OneOnOneUI : MonoBehaviour
     public GameObject Variables;
     public Slider p1Slider, p2Slider;
     private float timer;
-    public Text countText, musicText, player1, player2;
+    public Text countText, player1, player2;
+    public TextMeshProUGUI musicText;
     public AudioClip[] audioClips;
     private bool flag = true, flag2 = true;
     OneOnOneVariables oneVariables;

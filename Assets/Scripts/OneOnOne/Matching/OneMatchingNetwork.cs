@@ -38,7 +38,7 @@ public class OneMatchingNetwork : MonoBehaviourPunCallbacks
     
     void StartGame()
     {
-        //Disconnection();
+        Disconnection();
         SceneManager.LoadScene("OneOnOne");
     }
     private void Update()
