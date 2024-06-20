@@ -20,7 +20,7 @@ public class LobbyUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKey(KeyCode.Tab))
         {
             onlineList.SetActive(true);
         }else
