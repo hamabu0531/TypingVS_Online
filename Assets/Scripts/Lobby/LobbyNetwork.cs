@@ -44,7 +44,7 @@ public class LobbyNetwork : MonoBehaviourPunCallbacks
                 pList += p[i].NickName;
                 if (i != p.Length - 1)
                 {
-                    pList += "\n";
+                    pList += ", ";
                 }
             }
             lobbyUI.playerList.text = pList;
