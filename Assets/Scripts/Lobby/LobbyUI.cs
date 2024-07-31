@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class LobbyUI : MonoBehaviour
 {
-    public Canvas canvas, hiddenCanvas;
-    public Text playerList;
+    public Canvas canvas, hiddenCanvas, howToPlayCanvas;
+    public Text playerList, pingText;
     public AudioClip buttonSE, buttonSE2;
     public GameObject onlineList;
     private SEManager sEManager;
@@ -65,5 +65,16 @@ public class LobbyUI : MonoBehaviour
     {
         SceneManager.LoadScene("TwoOnTwo");
         sEManager.PlaySE(buttonSE);
+    }
+
+    public void HowToPlay()
+    {
+        if (howToPlayCanvas.gameObject.activeSelf)
+        {
+            howToPlayCanvas.gameObject.SetActive(false);
+        }else
+        {
+            howToPlayCanvas.gameObject.SetActive(true);
+        }
     }
 }

@@ -60,4 +60,9 @@ public class LobbyNetwork : MonoBehaviourPunCallbacks
         base.OnPlayerLeftRoom(otherPlayer);
         ListPlayerName();
     }
+    public void Update()
+    {
+        int ping = PhotonNetwork.GetPing();
+        lobbyUI.pingText.text = ping + " ms";
+    }
 }

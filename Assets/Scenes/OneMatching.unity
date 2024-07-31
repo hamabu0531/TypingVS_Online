@@ -912,9 +912,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1598990935}
-        m_TargetAssemblyTypeName: OneMatchingUI, Assembly-CSharp
-        m_MethodName: BackToLobby
+      - m_Target: {fileID: 1603757753}
+        m_TargetAssemblyTypeName: OneOnOneNetwork, Assembly-CSharp
+        m_MethodName: Disconnection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -924,9 +924,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1603757753}
-        m_TargetAssemblyTypeName: OneOnOneNetwork, Assembly-CSharp
-        m_MethodName: Disconnection
+      - m_Target: {fileID: 1598990935}
+        m_TargetAssemblyTypeName: OneMatchingUI, Assembly-CSharp
+        m_MethodName: BackToLobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
