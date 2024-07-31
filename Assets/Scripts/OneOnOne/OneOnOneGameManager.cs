@@ -7,7 +7,7 @@ public class OneOnOneGameManager : MonoBehaviour
 {
     int i = 0;
     public Text questionText, inputText;
-    string selectedText, enteredText = "";
+    string selectedText, enteredText, bufText;
     public GameObject Variables;
     public TextAsset gameText;
     public AudioClip misTypeSE;
@@ -19,6 +19,8 @@ public class OneOnOneGameManager : MonoBehaviour
         gameData = gameText.text.Split(",");
         selectedText = gameData[Random.Range(0, gameData.Length)];
         questionText.text = selectedText;
+        enteredText = selectedText;
+        bufText = selectedText;
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
     }
 
@@ -29,18 +31,19 @@ public class OneOnOneGameManager : MonoBehaviour
         {
             if (i < selectedText.Length-1)
             {
-                enteredText = enteredText + selectedText[i];
+                enteredText = "<color=#000000>" + bufText.Substring(0,i+1) + "</color>" + bufText.Substring(i+1);
                 i++;
             }
             else
             {
                 //äÆóπèàóù
-                enteredText = "";
                 oneVariables.Attack(10, 2);
                 //èâä˙âª
                 i = 0;
                 selectedText = gameData[Random.Range(0, gameData.Length)];
                 questionText.text = selectedText;
+                bufText=selectedText;
+                enteredText=selectedText;
             }
         }
         else if (Input.anyKeyDown)
