@@ -15,7 +15,7 @@ public class OneOnOneUI : MonoBehaviour
     public Text countText, player1, player2;
     public TextMeshProUGUI musicText;
     public AudioClip[] audioClips;
-    private bool flag = true, flag2 = true;
+    private bool flag = true, flag2 = true, flag3=true;
     OneOnOneVariables oneVariables;
     // Start is called before the first frame update
     void Start()
@@ -23,8 +23,6 @@ public class OneOnOneUI : MonoBehaviour
         audioClips = Resources.LoadAll<AudioClip>("Musics/battle/");
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
         countText = hiddenCanvas.transform.GetChild(0).GetComponent<Text>();
-        player1.text = PhotonNetwork.PlayerList[0].NickName;
-        player2.text = PhotonNetwork.PlayerList[1].NickName;
         SelectMusic();
     }
 
@@ -32,6 +30,12 @@ public class OneOnOneUI : MonoBehaviour
     void Update()
     {
         timer = oneVariables.countDownTimer;
+        if (timer < 3 && flag3)
+        {
+            player1.text = PhotonNetwork.PlayerList[0].NickName;
+            player2.text = PhotonNetwork.PlayerList[1].NickName;
+            flag3 = false;
+        }
         p1Slider.value = oneVariables.playerHP[0];
         p2Slider.value = oneVariables.playerHP[1];
         //バーの色の変更
