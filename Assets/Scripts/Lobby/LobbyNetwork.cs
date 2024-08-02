@@ -12,58 +12,54 @@ public class LobbyNetwork : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.NickName = PlayerPrefs.GetString("name");
-        //Debug.Log(PlayerPrefs.GetString("name"));
+        //Debug.Log(PhotonNetwork.NickName);
         PhotonNetwork.ConnectUsingSettings();
         lobbyUI = UIManager.GetComponent<LobbyUI>();
     }
 
     public override void OnConnectedToMaster()
     {
-        PhotonNetwork.JoinOrCreateRoom("lobby", new RoomOptions(), TypedLobby.Default);
+        PhotonNetwork.JoinLobby();
     }
 
-    public override void OnJoinedRoom()
+    public override void OnJoinedLobby()
     {
-        base.OnJoinedRoom();
+        base.OnJoinedLobby();
         lobbyUI.ChangeActive();
-        ListPlayerName();
     }
 
     public void Disconnection()
     {
         PhotonNetwork.Disconnect();
     }
-    public void ListPlayerName()
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        if (PhotonNetwork.InRoom)
+        base.OnRoomListUpdate(roomList);
+        DisplayRoomList(roomList); // ルームリストが更新されたときの処理
+    }
+
+    private void DisplayRoomList(List<RoomInfo> roomList)
+    {
+        string roomListString = "";
+        foreach (RoomInfo room in roomList)
         {
-            Player[] p = PhotonNetwork.PlayerList;
-            string pList = "";
-            for (int i = 0; i < p.Length; i++)
+            if (room.IsVisible && room.IsOpen)
             {
-                pList += p[i].NickName;
-                if (i != p.Length - 1)
+                if (roomListString != "")
                 {
-                    pList += "  ";
+                    roomListString += ", "; // カンマで区切る
                 }
+                roomListString += $"Room Name: {room.Name} (Players: {room.PlayerCount}/{room.MaxPlayers})";
             }
-            lobbyUI.playerList.text = pList;
         }
+
+        Debug.Log("Room List: " + roomListString); // ルームリストをデバッグログに表示
     }
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        base.OnPlayerEnteredRoom(newPlayer);
-        Debug.Log(newPlayer.NickName + " has joined.");
-        ListPlayerName();
-    }
-    public override void OnPlayerLeftRoom(Player otherPlayer)
-    {
-        base.OnPlayerLeftRoom(otherPlayer);
-        ListPlayerName();
-    }
+
     public void Update()
     {
         int ping = PhotonNetwork.GetPing();
         lobbyUI.pingText.text = ping + " ms";
     }
+
 }

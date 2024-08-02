@@ -19,7 +19,7 @@ public class OneMatchingNetwork : MonoBehaviourPunCallbacks
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;
-        PhotonNetwork.JoinOrCreateRoom("OneMatching", roomOptions, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom(PlayerPrefs.GetString("roomName"), roomOptions, TypedLobby.Default);
     }
     public override void OnJoinedRoom()
     {

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using TMPro;
 
 public class LobbyUI : MonoBehaviour
 {
-    public Canvas canvas, hiddenCanvas, howToPlayCanvas;
-    public Text playerList, pingText;
+    public Canvas canvas, hiddenCanvas, howToPlayCanvas, oneVoneCanvas;
+    public Text pingText;
+    public TextMeshProUGUI roomText;
     public AudioClip buttonSE, buttonSE2;
-    public GameObject onlineList;
     private SEManager sEManager;
     // Start is called before the first frame update
     void Start()
@@ -20,13 +22,6 @@ public class LobbyUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            onlineList.SetActive(true);
-        }else
-        {
-            onlineList.SetActive(false);
-        }
     }
 
     public void ChangeActive()
@@ -58,6 +53,7 @@ public class LobbyUI : MonoBehaviour
 
     public void OneOnOne()
     {
+        PlayerPrefs.SetString("roomName", roomText.text);
         SceneManager.LoadScene("OneMatching");
         sEManager.PlaySE(buttonSE);
     }
@@ -76,5 +72,18 @@ public class LobbyUI : MonoBehaviour
         {
             howToPlayCanvas.gameObject.SetActive(true);
         }
+    }
+
+    public void ListActive()
+    {
+        if(oneVoneCanvas.gameObject.activeSelf)
+        {
+            oneVoneCanvas.gameObject.SetActive(false);
+        }
+        else
+        {
+            oneVoneCanvas.gameObject.SetActive(true);
+        }
+        
     }
 }
