@@ -53,6 +53,7 @@ public class LobbyNetwork : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
+        lobbyUI.messageText.text = newPlayer.NickName + " has joined.";
         Debug.Log(newPlayer.NickName + " has joined.");
         ListPlayerName();
     }

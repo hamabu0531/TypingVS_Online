@@ -15,14 +15,18 @@ public class OneOnOneUI : MonoBehaviour
     public Text countText, player1, player2;
     public TextMeshProUGUI musicText;
     public AudioClip[] audioClips;
+    public Sprite[] backgrounds;
+    public Image bg;
     private bool flag = true, flag2 = true, flag3=true;
     OneOnOneVariables oneVariables;
     // Start is called before the first frame update
     void Start()
     {
+        backgrounds = Resources.LoadAll<Sprite>("Images/backgrounds/");
         audioClips = Resources.LoadAll<AudioClip>("Musics/battle/");
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
         countText = hiddenCanvas.transform.GetChild(0).GetComponent<Text>();
+        bg.sprite = backgrounds[Random.Range(0,4)];
         SelectMusic();
     }
 

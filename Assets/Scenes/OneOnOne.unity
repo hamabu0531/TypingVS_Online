@@ -363,6 +363,8 @@ MonoBehaviour:
   player2: {fileID: 530745041}
   musicText: {fileID: 1103534836}
   audioClips: []
+  backgrounds: []
+  bg: {fileID: 186332551}
 --- !u!82 &171769184
 AudioSource:
   m_ObjectHideFlags: 0

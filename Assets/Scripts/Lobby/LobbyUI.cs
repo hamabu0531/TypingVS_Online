@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LobbyUI : MonoBehaviour
 {
     public Canvas canvas, hiddenCanvas, howToPlayCanvas;
     public Text playerList, pingText;
+    public TextMeshProUGUI messageText;
     public AudioClip buttonSE, buttonSE2;
     public GameObject onlineList;
     private SEManager sEManager;
