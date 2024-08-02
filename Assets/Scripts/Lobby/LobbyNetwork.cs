@@ -44,7 +44,7 @@ public class LobbyNetwork : MonoBehaviourPunCallbacks
                 pList += p[i].NickName;
                 if (i != p.Length - 1)
                 {
-                    pList += ", ";
+                    pList += "  ";
                 }
             }
             lobbyUI.playerList.text = pList;
@@ -53,6 +53,7 @@ public class LobbyNetwork : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
+        Debug.Log(newPlayer.NickName + " has joined.");
         ListPlayerName();
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
