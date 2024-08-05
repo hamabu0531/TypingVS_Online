@@ -698,7 +698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1598990936}
-  - component: {fileID: 1598990935}
+  - component: {fileID: 1598990937}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -706,20 +706,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1598990935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598990934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9879170c7e482fa4290e7ddf4e2aa0e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonSE2: {fileID: 8300000, guid: 79fe8854c8861644e87cb7235e40f43b, type: 3}
-  matchingText: {fileID: 423705490}
 --- !u!4 &1598990936
 Transform:
   m_ObjectHideFlags: 0
@@ -735,6 +721,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1598990937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598990934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d55e9322b5ab9d4780e8cdaf9c1d460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonSE2: {fileID: 8300000, guid: 79fe8854c8861644e87cb7235e40f43b, type: 3}
+  matchingText: {fileID: 423705490}
 --- !u!1 &1603757751
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b247a9bde4da0244ba8b2d6c09f27cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uIManager: {fileID: 1598990934}
 --- !u!1 &1769485770
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,8 +981,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1598990935}
-        m_TargetAssemblyTypeName: OneMatchingUI, Assembly-CSharp
+      - m_Target: {fileID: 1598990937}
+        m_TargetAssemblyTypeName: TwoMatchingUI, Assembly-CSharp
         m_MethodName: BackToLobby
         m_Mode: 1
         m_Arguments:

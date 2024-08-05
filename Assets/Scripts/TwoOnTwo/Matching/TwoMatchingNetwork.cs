@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class TwoMatchingNetwork : MonoBehaviourPunCallbacks
 {
+    public GameObject uIManager;
+    TwoMatchingUI twoMatchingUI;
     // Start is called before the first frame update
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        twoMatchingUI = uIManager.GetComponent<TwoMatchingUI>();
     }
 
     public override void OnConnectedToMaster()
@@ -48,9 +51,9 @@ public class TwoMatchingNetwork : MonoBehaviourPunCallbacks
     }
     IEnumerator StartGame()
     {
-        //oneMatchingUI.matchingText.transform.GetChild(0).gameObject.SetActive(false); //ローディングのくるくる非表示
-        //oneMatchingUI.matchingText.transform.parent.GetChild(1).gameObject.SetActive(false); //キャンセルボタン非表示
-        //oneMatchingUI.matchingText.text = "対戦相手が見つかりました！";
+        twoMatchingUI.matchingText.transform.GetChild(0).gameObject.SetActive(false); //ローディングのくるくる非表示
+        twoMatchingUI.matchingText.transform.parent.GetChild(1).gameObject.SetActive(false); //キャンセルボタン非表示
+        twoMatchingUI.matchingText.text = "対戦相手が見つかりました！";
         yield return new WaitForSeconds(2);
         Disconnection();
         SceneManager.LoadScene("TwoOnTwo");
