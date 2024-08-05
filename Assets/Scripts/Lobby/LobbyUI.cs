@@ -65,7 +65,7 @@ public class LobbyUI : MonoBehaviour
     }
     public void TwoOnTwo()
     {
-        SceneManager.LoadScene("TwoOnTwo");
+        SceneManager.LoadScene("TwoMatching");
         sEManager.PlaySE(buttonSE);
     }
 

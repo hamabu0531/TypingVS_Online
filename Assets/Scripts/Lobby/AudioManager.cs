@@ -36,7 +36,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "OneMatching" && scene.name != "Lobby" && scene.name != "Title")
+        if (scene.name != "OneMatching" && scene.name != "Lobby" && scene.name != "Title" && scene.name != "TwoMatching")
         {
             Destroy(gameObject);
         }
