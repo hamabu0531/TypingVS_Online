@@ -9,22 +9,24 @@ using TMPro;
 public class OneOnOneUI : MonoBehaviour
 {
     public Canvas canvas, hiddenCanvas, hiddenCanvas2;
-    public GameObject Variables;
+    public GameObject Variables, gManager;
     public Slider p1Slider, p2Slider;
     private float timer;
     public Text countText, player1, player2;
-    public TextMeshProUGUI musicText;
+    public TextMeshProUGUI musicText, correctText, missText, probText;
     public AudioClip[] audioClips;
     public Sprite[] backgrounds;
     public Image bg;
-    private bool flag = true, flag2 = true, flag3=true;
+    private bool flag = true, flag2 = true, flag3=true; //flag2はisGameOver
     OneOnOneVariables oneVariables;
+    OneOnOneGameManager oneGameManager;
     // Start is called before the first frame update
     void Start()
     {
         backgrounds = Resources.LoadAll<Sprite>("Images/backgrounds/");
         audioClips = Resources.LoadAll<AudioClip>("Musics/battle/");
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
+        oneGameManager = gManager.GetComponent<OneOnOneGameManager>();
         countText = hiddenCanvas.transform.GetChild(0).GetComponent<Text>();
         bg.sprite = backgrounds[Random.Range(0,4)];
         SelectMusic();
@@ -77,6 +79,11 @@ public class OneOnOneUI : MonoBehaviour
             GameOver(PhotonNetwork.PlayerList[1].NickName);
             canvas.gameObject.SetActive(false);
             flag2 = false;
+            oneGameManager.isGameover = flag2;
+            int allTyped = oneGameManager.correct + oneGameManager.miss;
+            correctText.text = "総タイプ数: " + allTyped;
+            missText.text = "ミスタイプ数: " + oneGameManager.miss;
+            probText.text = "正答率: " + (int)(((float)oneGameManager.correct / (float)allTyped) * 100) + "%";
             //クライアントの勝利！
         }
         else if (oneVariables.playerHP[1] <= 0 && flag2)
@@ -85,6 +92,11 @@ public class OneOnOneUI : MonoBehaviour
             GameOver(PhotonNetwork.PlayerList[0].NickName);
             canvas.gameObject.SetActive(false);
             flag2 = false;
+            oneGameManager.isGameover = flag2;
+            int allTyped = oneGameManager.correct + oneGameManager.miss;
+            correctText.text = "総タイプ数: " + allTyped;
+            missText.text = "ミスタイプ数: " + oneGameManager.miss;
+            probText.text = "正答率: " + (int)(((float)oneGameManager.correct / (float)allTyped)*100) + "%";
             //マスターの勝利！
         }
     }

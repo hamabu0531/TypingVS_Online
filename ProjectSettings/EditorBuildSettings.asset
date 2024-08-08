@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TwoMatching.unity
     guid: 218f1bbf9813aec43bf89019c6498149
+  - enabled: 1
+    path: Assets/Scenes/TwoOnTwo.unity
+    guid: 6e4d0bfa9bf664843ad4582272fa24d3
   m_configObjects: {}
