@@ -41,11 +41,9 @@ public class OneOnOneGameManager : MonoBehaviour
                 }
                 else
                 {
-                    miss++;
                     int damage = (i + 1) * 2;
                     //Š®—¹ˆ—
                     oneVariables.Attack(damage, 2);
-                    Debug.Log(damage + "‚Ìƒ_ƒ[ƒW‚ğ—^‚¦‚½");
                     //‰Šú‰»
                     i = 0;
                     selectedText = gameData[Random.Range(0, gameData.Length)];
@@ -56,6 +54,7 @@ public class OneOnOneGameManager : MonoBehaviour
             }
             else if (Input.anyKeyDown && !Input.GetMouseButtonDown(0) && !Input.GetMouseButton(1))
             {
+                miss++;
                 oneVariables.Attack(-2, 0);
                 GetComponent<AudioSource>().PlayOneShot(misTypeSE);
             }

@@ -17,7 +17,7 @@ public class OneOnOneUI : MonoBehaviour
     public AudioClip[] audioClips;
     public Sprite[] backgrounds;
     public Image bg;
-    private bool flag = true, flag2 = true, flag3=true; //flag2はisGameOver
+    private bool flag = true, flag2 = true, flag3=true; //flag2は!isGameOver
     OneOnOneVariables oneVariables;
     OneOnOneGameManager oneGameManager;
     // Start is called before the first frame update
@@ -79,7 +79,7 @@ public class OneOnOneUI : MonoBehaviour
             GameOver(PhotonNetwork.PlayerList[1].NickName);
             canvas.gameObject.SetActive(false);
             flag2 = false;
-            oneGameManager.isGameover = flag2;
+            oneGameManager.isGameover = true;
             int allTyped = oneGameManager.correct + oneGameManager.miss;
             correctText.text = "総タイプ数: " + allTyped;
             missText.text = "ミスタイプ数: " + oneGameManager.miss;
@@ -92,7 +92,7 @@ public class OneOnOneUI : MonoBehaviour
             GameOver(PhotonNetwork.PlayerList[0].NickName);
             canvas.gameObject.SetActive(false);
             flag2 = false;
-            oneGameManager.isGameover = flag2;
+            oneGameManager.isGameover = true;
             int allTyped = oneGameManager.correct + oneGameManager.miss;
             correctText.text = "総タイプ数: " + allTyped;
             missText.text = "ミスタイプ数: " + oneGameManager.miss;
