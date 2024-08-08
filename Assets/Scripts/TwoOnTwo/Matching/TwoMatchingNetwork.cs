@@ -27,6 +27,19 @@ public class TwoMatchingNetwork : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
+        CheckPlayerCount();
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        CheckPlayerCount();
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        CheckPlayerCount();
     }
 
     public void Disconnection()
@@ -40,14 +53,14 @@ public class TwoMatchingNetwork : MonoBehaviourPunCallbacks
             Debug.Log("4 players have joined the room. Starting the game...");
             StartCoroutine(StartGame());
         }
+        else
+        {
+            Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers);
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        if (PhotonNetwork.InRoom)
-        {
-            CheckPlayerCount();
-        }
     }
     IEnumerator StartGame()
     {
@@ -56,6 +69,7 @@ public class TwoMatchingNetwork : MonoBehaviourPunCallbacks
         twoMatchingUI.matchingText.text = "‘Îí‘ŠŽè‚ªŒ©‚Â‚©‚è‚Ü‚µ‚½I";
         yield return new WaitForSeconds(2);
         Disconnection();
+        yield return new WaitUntil(()=> !PhotonNetwork.IsConnected);
         SceneManager.LoadScene("TwoOnTwo");
     }
 }

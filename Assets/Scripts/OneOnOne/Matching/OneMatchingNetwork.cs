@@ -54,6 +54,7 @@ public class OneMatchingNetwork : MonoBehaviourPunCallbacks
         oneMatchingUI.matchingText.text = "‘Îí‘ŠŽè‚ªŒ©‚Â‚©‚è‚Ü‚µ‚½I";
         yield return new WaitForSeconds(2);
         Disconnection();
+        yield return new WaitUntil(() => !PhotonNetwork.IsConnected);
         SceneManager.LoadScene("OneOnOne");
     }
 }
