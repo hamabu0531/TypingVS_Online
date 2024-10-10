@@ -17,7 +17,7 @@ public class OneOnOneUI : MonoBehaviour
     public AudioClip[] audioClips;
     public Sprite[] backgrounds;
     public Image bg;
-    private bool flag = true, flag2 = true, flag3=true; //flag2は!isGameOver
+    private bool flag = true, flag2 = true, flag3 = true; //flag2は!isGameOver
     OneOnOneVariables oneVariables;
     OneOnOneGameManager oneGameManager;
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class OneOnOneUI : MonoBehaviour
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
         oneGameManager = gManager.GetComponent<OneOnOneGameManager>();
         countText = hiddenCanvas.transform.GetChild(0).GetComponent<Text>();
-        bg.sprite = backgrounds[Random.Range(0,4)];
+        bg.sprite = backgrounds[Random.Range(0, 4)];
         SelectMusic();
     }
 
@@ -83,7 +83,7 @@ public class OneOnOneUI : MonoBehaviour
             int allTyped = oneGameManager.correct + oneGameManager.miss;
             correctText.text = "総タイプ数: " + allTyped;
             missText.text = "ミスタイプ数: " + oneGameManager.miss;
-            probText.text = "正答率: " + (int)(((float)oneGameManager.correct / (float)allTyped) * 100) + "%";
+            probText.text = "正確性: " + (int)(((float)oneGameManager.correct / (float)allTyped) * 100) + "%";
             //クライアントの勝利！
         }
         else if (oneVariables.playerHP[1] <= 0 && flag2)
@@ -96,7 +96,7 @@ public class OneOnOneUI : MonoBehaviour
             int allTyped = oneGameManager.correct + oneGameManager.miss;
             correctText.text = "総タイプ数: " + allTyped;
             missText.text = "ミスタイプ数: " + oneGameManager.miss;
-            probText.text = "正答率: " + (int)(((float)oneGameManager.correct / (float)allTyped)*100) + "%";
+            probText.text = "正確性: " + (int)(((float)oneGameManager.correct / (float)allTyped) * 100) + "%";
             //マスターの勝利！
         }
     }

@@ -7,7 +7,7 @@ using TMPro;
 
 public class LobbyUI : MonoBehaviour
 {
-    public Canvas canvas, hiddenCanvas, howToPlayCanvas;
+    public Canvas canvas, hiddenCanvas;
     public Text playerList, pingText;
     public TextMeshProUGUI messageText;
     public AudioClip buttonSE, buttonSE2;
@@ -69,14 +69,8 @@ public class LobbyUI : MonoBehaviour
         sEManager.PlaySE(buttonSE);
     }
 
-    public void HowToPlay()
+    public void Tutorial()
     {
-        if (howToPlayCanvas.gameObject.activeSelf)
-        {
-            howToPlayCanvas.gameObject.SetActive(false);
-        }else
-        {
-            howToPlayCanvas.gameObject.SetActive(true);
-        }
+        SceneManager.LoadScene("Tutorial");
     }
 }
