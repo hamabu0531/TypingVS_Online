@@ -13,7 +13,7 @@ public class OneOnOneUI : MonoBehaviour
     public Slider p1Slider, p2Slider;
     private float timer;
     public Text countText, player1, player2;
-    public TextMeshProUGUI musicText, correctText, missText, probText;
+    public TextMeshProUGUI musicText, correctText, missText, probText, winnerText;
     public AudioClip[] audioClips;
     public Sprite[] backgrounds;
     public Image bg;
@@ -23,7 +23,7 @@ public class OneOnOneUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        backgrounds = Resources.LoadAll<Sprite>("Images/backgrounds/");
+        backgrounds = Resources.LoadAll<Sprite>("Images/battle_backgrounds/");
         audioClips = Resources.LoadAll<AudioClip>("Musics/battle/");
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
         oneGameManager = gManager.GetComponent<OneOnOneGameManager>();
@@ -114,7 +114,7 @@ public class OneOnOneUI : MonoBehaviour
     public void GameOver(string winner)
     {
         hiddenCanvas2.gameObject.SetActive(true);
-        hiddenCanvas2.transform.GetChild(0).gameObject.GetComponent<Text>().text = winner + "ÇÃèüóòÅI";
+        winnerText.text = winner + " won!";
     }
     void SelectMusic()
     {
