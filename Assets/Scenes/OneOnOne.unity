@@ -1920,6 +1920,7 @@ MonoBehaviour:
   Variables: {fileID: 1870089857}
   gameText: {fileID: 4900000, guid: d66a0cc2a87992f4d982c5c7bc6fb923, type: 3}
   misTypeSE: {fileID: 8300000, guid: f25f56597cf40e64d909a0752776d183, type: 3}
+  correctSE: {fileID: 8300000, guid: 78d112c5e7bd8b5489750e23c63bbc5f, type: 3}
   isGameover: 0
 --- !u!4 &1151894098
 Transform:
