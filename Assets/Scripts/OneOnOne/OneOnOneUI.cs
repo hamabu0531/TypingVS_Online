@@ -13,17 +13,17 @@ public class OneOnOneUI : MonoBehaviour
     public Slider p1Slider, p2Slider;
     private float timer;
     public Text countText, player1, player2;
-    public TextMeshProUGUI musicText, correctText, missText, probText;
+    public TextMeshProUGUI musicText, correctText, missText, probText, winnerText;
     public AudioClip[] audioClips;
     public Sprite[] backgrounds;
     public Image bg;
-    private bool flag = true, flag2 = true, flag3 = true; //flag2は!isGameOver
+    private bool isStarted = false, isPlaying = true, isEmptyName = true;
     OneOnOneVariables oneVariables;
     OneOnOneGameManager oneGameManager;
     // Start is called before the first frame update
     void Start()
     {
-        backgrounds = Resources.LoadAll<Sprite>("Images/backgrounds/");
+        backgrounds = Resources.LoadAll<Sprite>("Images/battle_backgrounds/");
         audioClips = Resources.LoadAll<AudioClip>("Musics/battle/");
         oneVariables = Variables.GetComponent<OneOnOneVariables>();
         oneGameManager = gManager.GetComponent<OneOnOneGameManager>();
@@ -36,11 +36,11 @@ public class OneOnOneUI : MonoBehaviour
     void Update()
     {
         timer = oneVariables.countDownTimer;
-        if (timer < 3 && flag3)
+        if (timer < 3 && isEmptyName)
         {
             player1.text = PhotonNetwork.PlayerList[0].NickName;
             player2.text = PhotonNetwork.PlayerList[1].NickName;
-            flag3 = false;
+            isEmptyName = false;
         }
         p1Slider.value = oneVariables.playerHP[0];
         p2Slider.value = oneVariables.playerHP[1];
@@ -53,6 +53,7 @@ public class OneOnOneUI : MonoBehaviour
         {
             p1Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
         }
+
         if (oneVariables.playerHP[1] <= 20)
         {
             p2Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
@@ -61,43 +62,30 @@ public class OneOnOneUI : MonoBehaviour
         {
             p2Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
         }
+
         if (timer > 1)
         {
             countText.text = ((int)timer).ToString();
         }
         else
         {
-            if (flag)
+            if (!isStarted)
             {
                 ChangeActive();
-                flag = false;
+                isStarted = true;
             }
         }
-        if (oneVariables.playerHP[0] <= 0 && flag2)
+        if (oneVariables.playerHP[0] <= 0 && isPlaying)
         {
+            //クライアントの勝利！
             oneVariables.playerHP[0] = 0;
             GameOver(PhotonNetwork.PlayerList[1].NickName);
-            canvas.gameObject.SetActive(false);
-            flag2 = false;
-            oneGameManager.isGameover = true;
-            int allTyped = oneGameManager.correct + oneGameManager.miss;
-            correctText.text = "総タイプ数: " + allTyped;
-            missText.text = "ミスタイプ数: " + oneGameManager.miss;
-            probText.text = "正確性: " + (int)(((float)oneGameManager.correct / (float)allTyped) * 100) + "%";
-            //クライアントの勝利！
         }
-        else if (oneVariables.playerHP[1] <= 0 && flag2)
+        else if (oneVariables.playerHP[1] <= 0 && isPlaying)
         {
+            //マスターの勝利！
             oneVariables.playerHP[1] = 0;
             GameOver(PhotonNetwork.PlayerList[0].NickName);
-            canvas.gameObject.SetActive(false);
-            flag2 = false;
-            oneGameManager.isGameover = true;
-            int allTyped = oneGameManager.correct + oneGameManager.miss;
-            correctText.text = "総タイプ数: " + allTyped;
-            missText.text = "ミスタイプ数: " + oneGameManager.miss;
-            probText.text = "正確性: " + (int)(((float)oneGameManager.correct / (float)allTyped) * 100) + "%";
-            //マスターの勝利！
         }
     }
     public void Disconnection()
@@ -114,7 +102,19 @@ public class OneOnOneUI : MonoBehaviour
     public void GameOver(string winner)
     {
         hiddenCanvas2.gameObject.SetActive(true);
-        hiddenCanvas2.transform.GetChild(0).gameObject.GetComponent<Text>().text = winner + "の勝利！";
+        winnerText.text = winner + " won!";
+        canvas.gameObject.SetActive(false);
+        isPlaying = false;
+        oneGameManager.isGameover = true;
+        int allTyped = oneGameManager.correct + oneGameManager.miss;
+        correctText.text = "総タイプ数: " + allTyped;
+        missText.text = "ミスタイプ数: " + oneGameManager.miss;
+        float acc = 0;
+        if (allTyped != 0)
+        {
+            acc = ((float)oneGameManager.correct / (float)allTyped) * 100;
+        }
+        probText.text = "正確性: " + (int)acc + "%";
     }
     void SelectMusic()
     {

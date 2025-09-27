@@ -11,7 +11,7 @@ public class OneOnOneGameManager : MonoBehaviour
     string selectedText, enteredText, bufText;
     public GameObject Variables;
     public TextAsset gameText;
-    public AudioClip misTypeSE;
+    public AudioClip misTypeSE, correctSE;
     public bool isGameover = false;
     private string[] gameData;
     OneOnOneVariables oneVariables;
@@ -33,12 +33,14 @@ public class OneOnOneGameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(selectedText[i].ToString()))
             {
+                // “r’†‚Ì•¶š‚ğ“ü—Í
                 if (i < selectedText.Length - 1)
                 {
                     correct++;
                     enteredText = "<color=#000000>" + bufText.Substring(0, i + 1) + "</color>" + bufText.Substring(i + 1);
                     i++;
                 }
+                // ÅŒã‚Ì•¶š‚ğ“ü—Í
                 else
                 {
                     int damage = (i + 1) * 2;
@@ -50,6 +52,7 @@ public class OneOnOneGameManager : MonoBehaviour
                     questionText.text = selectedText;
                     bufText = selectedText;
                     enteredText = selectedText;
+                    GetComponent<AudioSource>().PlayOneShot(correctSE);
                 }
             }
             else if (Input.anyKeyDown && !Input.GetMouseButtonDown(0) && !Input.GetMouseButton(1))
