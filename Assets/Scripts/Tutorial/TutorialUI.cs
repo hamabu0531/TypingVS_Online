@@ -56,7 +56,7 @@ public class TutorialUI : MonoBehaviour
         missText.text = "ミスタイプ数: " + miss;
         probText.text = "正確性: " + (int)(((float)tGameManager.correct / (float)allTyped) * 100) + "%";
         hiddenCanvas.gameObject.SetActive(true);
-        resultText.text = playerName + "の負け...";
+        resultText.text = playerName.text + "の負け...";
     }
     void SelectMusic()
     {
