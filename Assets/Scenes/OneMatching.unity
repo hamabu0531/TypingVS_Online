@@ -184,8 +184,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30DE\u30C3\u30C1\u30F3\u30B0\u4E2D"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2634a38ceb30c8647a15bc56b9f267be, type: 2}
-  m_sharedMaterial: {fileID: 64010009104090491, guid: 2634a38ceb30c8647a15bc56b9f267be, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c9e2f3e6706d4b443bb6e2f58b2655ba, type: 2}
+  m_sharedMaterial: {fileID: -6090563772335240401, guid: c9e2f3e6706d4b443bb6e2f58b2655ba, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

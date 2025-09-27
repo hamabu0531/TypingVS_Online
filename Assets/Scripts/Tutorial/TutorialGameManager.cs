@@ -11,7 +11,7 @@ public class TutorialGameManager : MonoBehaviour
     public Text questionText, inputText;
     string selectedText, enteredText, bufText;
     public TextAsset gameText;
-    public AudioClip misTypeSE;
+    public AudioClip misTypeSE, correctSE;
     public GameObject tManager;
     public bool isGameover = false;
     private string[] gameData;
@@ -32,24 +32,6 @@ public class TutorialGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //バーの色の変更
-        if (playerHP[0] <= 20)
-        {
-            tUI.p1Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
-        }
-        else
-        {
-            tUI.p1Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
-        }
-        if (playerHP[1] <= 20)
-        {
-            tUI.p2Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
-        }
-        else
-        {
-            tUI.p2Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
-        }
-
         if (!isGameover)
         {
             if (Input.GetKeyDown(selectedText[i].ToString()))
@@ -63,8 +45,10 @@ public class TutorialGameManager : MonoBehaviour
                 else
                 {
                     int damage = (i + 1) * 2;
-                    //完了処理
                     playerHP[1] -= damage; // 敵へダメージ
+                    tUI.SetPlayerHP(playerHP);
+                    GetComponent<AudioSource>().PlayOneShot(correctSE);
+
                     //初期化
                     i = 0;
                     selectedText = gameData[Random.Range(0, gameData.Length)];
@@ -75,8 +59,10 @@ public class TutorialGameManager : MonoBehaviour
             }
             else if (Input.anyKeyDown && !Input.GetMouseButtonDown(0) && !Input.GetMouseButton(1))
             {
-                miss++;
                 playerHP[0] -= 2; // 自身へ2ダメージ
+                tUI.SetPlayerHP(playerHP);
+
+                miss++;
                 GetComponent<AudioSource>().PlayOneShot(misTypeSE);
             }
             inputText.text = enteredText;

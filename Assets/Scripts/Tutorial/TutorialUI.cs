@@ -23,7 +23,7 @@ public class TutorialUI : MonoBehaviour
     void Start()
     {
         playerName.text = PlayerPrefs.GetString("name");
-        backgrounds = Resources.LoadAll<Sprite>("Images/backgrounds/");
+        backgrounds = Resources.LoadAll<Sprite>("Images/battle_backgrounds/");
         audioClips = Resources.LoadAll<AudioClip>("Musics/tutorial/");
         tGameManager = gManager.GetComponent<TutorialGameManager>();
         bg.sprite = backgrounds[Random.Range(0, 4)];
@@ -65,6 +65,30 @@ public class TutorialUI : MonoBehaviour
         musicText.text = "♪ " + audioClips[ran].name;
         StartCoroutine(FadeOut());
         GetComponent<AudioSource>().Play();
+    }
+
+    public void SetPlayerHP(int[] playerHP)
+    {
+        p1Slider.value = playerHP[0];
+        p2Slider.value = playerHP[1];
+
+        //バーの色の変更
+        if (playerHP[0] <= 20)
+        {
+            p1Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
+        }
+        else
+        {
+            p1Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
+        }
+        if (playerHP[1] <= 20)
+        {
+            p2Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
+        }
+        else
+        {
+            p2Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
+        }
     }
 
     public void BackToLobby()
